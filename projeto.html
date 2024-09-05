@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/projetos.css">
+    <title>Projetos</title>
+</head>
+<body>
+    <h1>Projetos</h1>
+    <main>
+        <section class="filtros" aria-label="Filtros de categoria">
+            <!-- Filtros de Categoria -->
+            <button class="filtro" data-category="all" aria-label="Mostrar todos os projetos">Todos</button>
+            <button class="filtro" data-category="calculadora" aria-label="Mostrar projetos de Websites">Calculadora</button>
+            <button class="filtro" data-category="jogo" aria-label="Mostrar projetos de Aplicativos">Jogo</button>
+        </section>
+        <section class="galeria" aria-label="Galeria de projetos">
+            <!-- Exemplo de Thumbnail de Projeto -->
+            <div class="thumbnail" data-category="calculadora">
+                <img src="./calculadora.png" alt="Imagem da Calculadora" />
+                <p>Calculadora</p>
+                <a href="#modal1" class="btn-detalhes" aria-label="Ver detalhes da Calculadora" data-modal="modal1">Ver Detalhes</a>
+            </div>
+            <div class="thumbnail" data-category="jogo">
+                <img src="./personagens.png" alt="Imagem do Jogo" />
+                <p>Jogo</p>
+                <a href="#modal2" class="btn-detalhes" aria-label="Ver detalhes do Jogo" data-modal="modal2">Ver Detalhes</a>
+            </div>
+        </section>
+    </main>
+    <a href="./index.html" class="btn-voltar" aria-label="Voltar à página inicial">Voltar à página inicial</a>
+
+    <!-- Modais para exibir detalhes dos projetos -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <a href="#modal1" class="close" aria-label="Fechar" data-modal="modal1">&times;</a>
+            <h2 id="modal1Title">Detalhes do Projeto 1</h2>
+            <img src="./calculadora.png" alt="Imagem detalhada da Calculadora" class="modal-image" />
+            <p>Calculadora de Média aritmética, potência e equação do segundo grau.</p>
+            <a href="https://example.com" class="btn-detalhes" target="_blank">Visitar Projeto</a>
+            <a href="https://github.com/usuario/repositorio" class="btn-detalhes" target="_blank">Ver no GitHub</a>
+            <a href="#modal2" class="btn-sair" aria-label="Fechar modal" data-modal="modal1">Sair</a>
+        </div>
+    </div>
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <a href="#modal1" class="close" aria-label="Fechar" data-modal="modal2">&times;</a>
+            <h2 id="modal2Title">Detalhes do Projeto 2</h2>
+            <img src="./personagens.png" alt="Imagem detalhada do Jogo" class="modal-image" />
+            <p>O jogador escolhe um personagem com atributos e habilidades para se aventurar em um mundo medieval cheio de monstros.</p>
+            <a href="https://example.com" class="btn-detalhes" target="_blank">Visitar Projeto</a>
+            <a href="https://github.com/usuario/repositorio" class="btn-detalhes" target="_blank">Ver no GitHub</a>
+            <a href="#modal2" class="btn-sair" aria-label="Fechar modal" data-modal="modal2">Sair</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para controlar a exibição dos modais
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalLinks = document.querySelectorAll('.btn-detalhes, .btn-sair, .close');
+            modalLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const modalId = this.getAttribute('data-modal');
+                    if (this.classList.contains('close') || this.classList.contains('btn-sair')) {
+                        document.getElementById(modalId).style.display = 'none';
+                    } else {
+                        document.getElementById(modalId).style.display = 'block';
+                    }
+                });
+            });
+
+            // Fechar modal ao clicar fora do conteúdo do modal
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
